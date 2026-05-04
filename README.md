@@ -1,7 +1,5 @@
 Numpy (**Num**erical **Py**thon) is an open source Python Library that’s widely used in science and engineering. The Numpy Library contadins multidimensional array data structures, such as the homogeneous, N-dimensional `ndarray`, and a large library of functions that operate efficiently on these data structures.
 
-![[Pasted image 20260426013048.png|491]]
-
 ## ***Why Use Numpy :***
 Python lists are excellent, general-purpose containers. They can be “heterogeneous”, meaning that they can contain elements of a variety of types, and they are *quite fast when used to perform individual operations on a handful of elements*.
 
