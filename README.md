@@ -214,16 +214,61 @@ array([ 0. ,  2.5,  5. ,  7.5, 10. ])
 [1, 2, 4 ,6]
 
 ```
-
-+ sorting elements :
++ sorting array elements :
 
 ```Python  
 >>> b = np.sort(arr)  
->>> 
-print(b)
+>>> print(b)
 
 # Output : 
 [1 2 3 4 5 6 7 8]
 ```
+
++ *For more about using Sort Functions :* [numpy Sort](https://numpy.org/doc/stable/reference/generated/numpy.sort.html#numpy.sort)
+
+`concatenate` : concatenate arrays
+
+```Python
+>>> py1 = np.array([1, 2, 2, 4, 6])
+>>> py2 = np.array([4,6,9])
+>>> pyR = np.concatenate(py1, py2)
+
+# Output :
+array[(1, 2, 2, 4, 6, 4, 6, 9)]
+```
+
+
++ ### Les Fonctions Statistiques : 
+ 
++ the main array : 
+
+```Python
+a = np.array([1, 9, 78, 0.5, 3])
+```
+
+`mean` : *Calculates the arithmetic average of the array elements*
+
+``` Python
+>>> py = np.mean(a) 
+>>> print(py)
+>>> py1 = np.sum(a)
+>>> print(py1)
+>>> py2 = np.min(a)
+>>> print(py2)
+>>> py3 = np.max(a)
+>>> print(py3)
+>>> py4 = np.std(a) # écart-type
+>>> print(py4)
+>>> py5 = np.var(a) # Variance
+>>> print(py5)
+
+# Output
+
+py = 18.3
+py1 = 91.5
+py2 = 0.5
+py3 = 78
+py4 = 30.002666548158683
+py5 = 900.1600000000001
 
 
