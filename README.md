@@ -271,6 +271,7 @@ py3 = 78
 py4 = 30.002666548158683
 py5 = 900.1600000000001
 
+```
 + ### Reading Files  :
 
 `loadtxt` : *Reads a clean csv file, No missing values*
