@@ -271,4 +271,12 @@ py3 = 78
 py4 = 30.002666548158683
 py5 = 900.1600000000001
 
++ ### Reading Files  :
 
+`loadtxt` : *Reads a clean csv file, No missing values*
+`genformatxt` : *Reads a CSV file with handling of missing values , Dirty data, missing values, mixed types*
+
+```Python
+>>> np.loadtxt("file.csv")
+>>> np.genfromtxt("file.csv")
+```
