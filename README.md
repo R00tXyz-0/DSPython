@@ -238,7 +238,7 @@ array[(1, 2, 2, 4, 6, 4, 6, 9)]
 ```
 
 
-+ ### Les Fonctions Statistiques : 
++ ### Statistics Function: 
  
 + the main array : 
 
