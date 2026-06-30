@@ -336,8 +336,326 @@ s3.isna()
 s3.dropna()
 # Output
 a NaN 
-b 5.0 -----> b 5.0
+b 5.0 -->     b 5.0
 c NaN 
 ```
+
+
+ `fillna()` : Replace missing values with a specified value.
+
+```Python
+s1 = pd.Series([1,3], index = ['a', 'b'])
+s2 = pd.Series([2,9], index = ['b', 'c'])
+s3 = s1 + s2
+s = s3.fillna(0)
+s
+# Output : 
+a 0.0 
+b 5.0 
+c 0.0
+```
+
+
++ Replace the missing value with the mean of a row
+
+``` Python
+df.fillna(df['Age'].mean())
+```
+
+
++ ***Forward and backward fill :*** 
+
+`ffil` : the missing value is filled by the previous valid value.
+`bfil` : the missing value id filled by the next valid value.
+
+``` Python
+s3.bfill()
+# Output : 
+a NaN 
+b 5.0 
+c 5.0
+```
+
+```python
+s3.ffill()
+a 5.0 
+b 5.0 
+c NaN
+```
+
+
+
++ #### Sorting & Filtering :
+
+
+###### Filtering data :
++ means selectig only the rows that satisfy a specific condition :
+
+*Exemple :* 
+
+```python
+data = pd.DataFrame({
+    "Name" : ["Ali", "Sara", "Othmane", "Hamza"],
+    "Age" : [20, 15, 18, 19],
+    "Grade" : [17, 18, 19, 20]
+})
+data
+```
+
+| |Name|Age|Grade|
+|---|---|---|---|
+|0|Ali|20|17|
+|1|Sara|15|18|
+|2|Othmane|18|19|
+|3|Hamza|19|20|
+
++ Filtre per Condition : 
+
+```Python
+age = data[data["Age"] > 17]
+age
+```
+
+| |Name|Age|Grade|
+|---|---|---|---|
+|0|Ali|20|17|
+|2|Othmane|18|19|
+|3|Hamza|19|20|
+
+
++ Use `&` : 
+
+```Python
+data[(data["Age"] > 17) & (data["Grade"] <= 17)]
+```
+
+| index | Name | Age | Garde |
+| ----- | ---- | --- | ----- |
+| 0     | Ali  | 20  | 17    |
+
++ Use `|`
+
+```Python
+data[(data["Age"] > 17) | (data["Grade"] < 18)]
+```
+
+| |Name|Age|Grade|
+|---|---|---|---|
+|0|Ali|20|17|
+|2|Othmane|18|19|
+|3|Hamza|19|20|
+###### Sorting data : 
++ means arranging the data in ascending or descending order using `sort_values` 
+
++ *ascending order :*
+
+```Python
+data.sort_values("Age") # acsending is default
+```
+
+|     | Name    | Age | Grade |
+| --- | ------- | --- | ----- |
+| 1   | Sara    | 15  | 18    |
+| 2   | Othmane | 18  | 19    |
+| 3   | Hamza   | 19  | 20    |
+| 0   | Ali     | 20  | 17    |
++ *descending order :*
+
+```Python
+data.sort_values("Age", ascending = False)
+```
+
+|     | Name    | Age | Grade |
+| --- | ------- | --- | ----- |
+| 0   | Ali     | 20  | 17    |
+| 3   | Hamza   | 19  | 20    |
+| 2   | Othmane | 18  | 19    |
+| 1   | Sara    | 15  | 18    |
+
++ *Sorting by colmuns :*
+
+```Python
+data.sort_values(["Age", "Grades"])
+```
+
+|     | Name    | Age | Grade |
+| --- | ------- | --- | ----- |
+| 1   | Sara    | 15  | 18    |
+| 2   | Othmane | 18  | 19    |
+| 3   | Hamza   | 19  | 20    |
+| 0   | Ali     | 20  | 17    |
+Pandas first sorts by *Grade*. If two rows have the same grade, it then sorts those rows by *Age*.
+
+
+#### Grouping : 
++ means dividing the data into groups based on  values of one or more columns. After creating the groups the perform calcualtion like `sum`, `max`, `min`, `mean` , etc ….
+
++ *the main exemple :*
+
+``` python
+It = pd.DataFrame({
+    "Name" : ["Ali", "Sara", "Othmane", "Hamza", "Adam", "Amine"],
+    "Department" : ["IT", "HR", "HR", "HR", "IT", "HR"],
+    "Salary" : [1000, 4000, 6000, 6000, 5000, 1000]
+})
+It
+```
+
+| index | Name    | Departement | Salary |
+| ----- | ------- | ----------- | ------ |
+| 0     | Ali     | IT          | 1000   |
+| 1     | Sara    | HR          | 4000   |
+| 2     | Othmane | HR          | 6000   |
+| 3     | Hamza   | HR          | 6000   |
+| 4     | Adam    | IT          | 5000   |
+| 5     | Amine   | HR          | 1000   |
+
+
++ Create Groups : 
+
+```Python
+It.groupby("Department")
+```
+
++ Select *Salary* Column and Groups the row *Department* compute the average `mean` for each group
+
+```python
+It.groupby("Departemnt")["Salary"].mean()
+
+#Output : 
+Department   Salary
+  HR          4250.0 
+  IT          3000.0
+```
+
+
++ Count how many employee in each group *(Department)*
+
+```Python
+It.groupby("Department")["Name"].sum()
+
+#Output : 
+Department   
+  HR         4
+  IT         2
+```
+
+
++ #### Combining Data : 
+
++ Joining a two or more DataFrame into a single DataFrame :
+
++ Pandas provide 3 main functions : 
+
+1. `concat` : to join two DataFrame by rows or by colmuns 
+    + by rows -> `axis = 0`(default)
+    + by colmuns -> `axis = 1`
+
+
+```python
+results = pd.concat([df1, df2])
+```
+
+
++ ignore the old index and make an new index :
+
+```python
+results = pd.concat([df1, df2], ignore_index = True)
+```
+
+this create new index start from 0
+
+
++ Combine two DataFrame by colmuns : 
+
+```python
+pd.contcat([df1, df2], axis = 1)
+```
+
+
+2. `merge` : combines DataFrame using common colmuns *(key)*
+
+```Python
+results = pd.merge(df1, df2, on = "ID")
+```
+
++ The column `ID` is called the **key**, because it exists in both DataFrames.
+
++ ***Type of merge*** : (inner, left, right, outer)
+
+```python
+pd.merge(df1, df2, on = "ID", how = "inner")
+pd.merge(df1, df2, on = "ID", how = "left")
+pd.merge(df1, df2, on = "ID", how = "right")
+pd.merge(df1, df2, on = "ID", how = "outer")
+```
+
+
+3. `join` : is similar to `merge()`, but it uses the **index** by default.
+
+```python
+results = df1.join(df2) # if both dataframe match index 
+```
+
+
++ #### Reading/Writing Csv files in Pandas : 
+
+
++ To read any DataFrame .csv file you need to use `read_csv`
+
+```python
+pd.read_csv("casa_weather.csv")
+```
+
++ Read only first Rows : 
+
+```Python
+pd.read_csv("casa_weather.csv", nrows = 2)
+```
+
++ Read Specific colmuns : 
+
+```python
+pd.read_csv("casa_weather.csv", usecols = ["time"])
+```
+
++ Use specific Separator : *Read it with , ; |*
+
+```python
+pd.read_csv("casa_weather.csv", sep = "|")
+```
+
++ Use a columns like an index : 
+
+```python
+pd.read_csv("casa_weather.csv", index_col = "time")
+```
+
++ here *time* become the DataFrame index : 
+
++ To save any DataFrame .csv file you must use `to_csv` :  
+
+```python
+df.to_csv("output.csv") # This creates a new file named `output.csv`.
+```
+
++ To save any file without index : 
+
+```python
+df.to_csv("output.csv", index = False)
+```
+
++ *Exemple :*
+
+```python
+Read -> Modify -> Save
+
+df = pd.read_csv("casa_weather.csv")
+df["time"] = df["time"] + 1 
+df.to_csv("casa_weather_Output.csv", index = False)
+```
+
++ **Pandas** is an open-source Python library used for **data manipulation and analysis**. It provides powerful data structures such as **Series** and **DataFrame** to organize and process structured data efficiently. Pandas is widely used for **data cleaning, filtering, sorting, grouping, merging, and file handling** (CSV, Excel, JSON, etc.). It is an essential tool in **Data Science, Data Analysis, Machine Learning, Artificial Intelligence, Finance, and Business Analytics**. Pandas is often used together with **NumPy**, **Matplotlib**, and **Scikit-learn** to build complete data analysis and machine learning workflows.
+
 
 
