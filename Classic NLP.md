@@ -180,3 +180,45 @@ print(test_seq)
 + If these words were absent from the training vocabulary, a tokenizer without OOV handling would simply remove them.
 
 + Using an OOV token allows the model to continue processing the sentence without completely losing these positions.
+
++ ###### Padding Sequence :
+
++ Padding is a preprocessing technique used in NLP to make all input sequences the same length by adding a special value (usually `0`) to shorter sequences.
+
++ After tokenization and sequencing, sentences usually have different lengths like : 
+
++ *Example:* before padding
+
+```python
+[[4, 2, 3, 5],
+ [4, 2, 3],
+ [7, 2, 3, 5, 9, 10]]
+```
+
+Since neural networks (RNNs, LSTMs, GRUs, Transformers) expect input tensors with a uniform shape, these sequences cannot be processed together directly.
+
+Padding solves this problem by adding `0`s to shorter sequences.
+
+
++ *Use Padding in with to improve the sequence with `0`s*
+
+```python
+from tensorflow.keras.preprocessing.sequence import pad_sequences 
+padded = pad_sequences(sequences)
+```
+
+
++ *Example* : After using padding
+
+```Python
+[[4, 2, 3, 5, 0, 0],
+ [4, 2, 3, 0, 0, 0],
+ [7, 2, 3, 5, 9, 10]]
+```
+
+
++ ###### Summary :
+
+- ***Padding*** adds a special value (`0`) to shorter sequences.
+- It ensures that **all sequences have the same length**.
+- This allows neural networks to process multiple sequences together efficiently during training.
