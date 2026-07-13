@@ -19,7 +19,13 @@ L I S T E N
 
 + In Natural Language Processing (NLP), computers do not understand words the way humans do. The first step is **tokenization**, where a sentence is split into individual words (called **tokens**).
 
-file:///C:/Users/htc/Desktop/try/R00txyz/assets/Pasted%20image%2020260712230612.png
+```
+i   love  my dog
+001 002  003 004
+
+i   love  my cat
+001 002  003 005
+```
 
 + the two sentences are almost identical:
 
