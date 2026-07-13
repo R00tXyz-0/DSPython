@@ -215,7 +215,8 @@ padded = pad_sequences(sequences)
  [4, 2, 3, 0, 0, 0],
  [7, 2, 3, 5, 9, 10]]
 ```
-
++ Some Option in ``pad_sequences`` function : `maxlen`, `truncating`, `padding` etc...
++ for more information about paddings check : [Understanding Padding in NLP: Types and When to Use Them | by Saad Sohail | Medium](https://saadsohail5104.medium.com/understanding-padding-in-nlp-types-and-when-to-use-them-bacae6cae401)
 
 + ###### Summary :
 
