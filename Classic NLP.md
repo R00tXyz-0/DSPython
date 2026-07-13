@@ -35,7 +35,7 @@ I love my ...
 
 The only difference is the last word:
 
-- dog → ***ID 004**
+- dog → ***ID 004***
 - cat → ***ID 005***
 
 Each word in the **vocabulary** is assigned a **unique numerical ID**.
