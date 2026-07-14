@@ -223,3 +223,62 @@ padded = pad_sequences(sequences)
 - ***Padding*** adds a special value (`0`) to shorter sequences.
 - It ensures that **all sequences have the same length**.
 - This allows neural networks to process multiple sequences together efficiently during training.
+
+
+- ### Stop Words :
+
++ Natural language processing tasks often involve filtering out commonly occurring words that provide no or very little semantic value to text analysis.
+
++ These words are known as stopwords include articles, prepositions and pronouns like "the", ***"and"***, ***"is"*** and ***"in"***.
+
++  Consider the sentence:   "The quick brown fox jumps over the lazy dog"
+	   ***Stopwords***: "the" and "over"
+	   ***Content words***: "quick", "brown", "fox", "jumps", "lazy", "dog" 
+
+
+
++ ###### When are stop word useful to remove : 
+
++ ***Text Classifcation like*** : Spam Detection, Sentiment Cassification, Topic Classification, the Classifier cares more about words like this Example : 
+
+
+```
+discount, free, offer, winner, urgent 
+```
+
++ More than Words Like : 
+
+```
+the 
+is 
+of 
+to
+```
+
++ ***Search Engines :*** 
+
++ Searching : The search engine focuses on:
+
+```
+best restaurants in Morocco
+
+
+best
+restaurants
+Morocco
+```
+
+
++ ***F-IDF*** : TF-IDF automatically gives stop words a very low weight because they appear in almost every document.
+
+
++ ###### When should you NOT remove stop words : 
+
++ Removing stop words is not always a good idea, in topics like : Sentiment Analysis, Machine Translation, Question Answering / Chatbots, Modern Deep Learning Models.
+
+
+
+
+
++ Example in Python using NLTK
+
